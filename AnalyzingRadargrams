@@ -1,0 +1,29 @@
+addpath '/Users/sinamohammadi/Documents/MATLAB/github_repo (1)/github_repo (2)'
+addpath '/Users/sinamohammadi/Documents/MATLAB/github_repo (1)/bedmap2_toolbox_v4.6.2'
+load('AMTdata.mat')
+load('samplegrid.mat')
+load('scarnames.mat')
+load('bedmap2coast.mat')
+load('bedmap2gl.mat')
+load('bedmap2shelf.mat')
+load('ll.mat')
+load('matlab.mat')
+[xx,yy] = ll2ps(lat37_895_935,long37_895_935);
+bedHeight = bedmachine_interp('bed',xx,yy); % determines bed height
+surfaceHeight = bedmachine_interp('surface',xx,yy); % determines surface height
+figure % creates a new figure window; not sure if this is necessary to have
+plot(bedHeight,'k-') % should plot bedheight with a blue straight line
+hold on % will ensure that we plot the next line on the same graph, not a new one
+plot(surfaceHeight,'b-') % should plot surface height with a black straight line
+figure
+freq_300 = imread("flight37_895_930_1.png");
+freq_60 = imread("flight37_899_931_2.png"); 
+
+imagesc(freq_300);
+%title('300 mHz') % for flight 37
+%title('300 mHz') % for flight 35
+figure
+imagesc(freq_60);
+colormap gray %makes them the same color
+%title('60 mHz') %for flight 37
+%title('60 mHz') %for flight 35
